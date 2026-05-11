@@ -62,5 +62,5 @@
 Timestamp_ms, Raw_EMG, Gesture_Class, Subject_ID, RMS_200ms, SSI_200ms
 
 تم التطوير بواسطة:
-Yahya Lababneh Data Science & Artificial Intelligence
+Yahia Lababneh Data Science & Artificial Intelligence
 Al al-Bayt University
