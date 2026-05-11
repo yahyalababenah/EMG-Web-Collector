@@ -1,6 +1,6 @@
 # 🦾 sEMG Data Acquisition System for 1D CNN
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 [![Web Serial API](https://img.shields.io/badge/Web-Serial_API-green.svg)]()
 [![Target](https://img.shields.io/badge/Target-AI_Expo_Jordan_2026-gold.svg)]()
 
