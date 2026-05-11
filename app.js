@@ -131,29 +131,35 @@ function updateChart(value) {
 }
 
 // ─── 6. استخراج الميزات وحفظها (Feature Extraction Pipeline) ─────────────
+// ─── 6. استخراج الميزات وحفظها (محدثة لحساس AD8232) ─────────────
 function processDataPoint(timestamp, emgValue) {
-    // تحديث النافذة المنزلقة (Sliding Window)
     windowBuffer.push(emgValue);
     if (windowBuffer.length > WINDOW_SIZE) {
         windowBuffer.shift();
     }
 
-    // حساب الـ RMS والـ SSI كلما اكتملت النافذة
     let rms = 0;
     let ssi = 0;
+    
     if (windowBuffer.length === WINDOW_SIZE) {
+        // الخطوة 1: حساب المتوسط (Mean) لمعرفة خط الصفر (DC Offset)
+        let sum = windowBuffer.reduce((a, b) => a + b, 0);
+        let mean = sum / WINDOW_SIZE;
+
+        // الخطوة 2: إزالة خط الصفر من القراءات وحساب الـ RMS والـ SSI
         let sumSquares = 0;
         for (let i = 0; i < WINDOW_SIZE; i++) {
-            sumSquares += Math.pow(windowBuffer[i], 2);
+            // نطرح المتوسط من القراءة لنحصل على الإشارة الصافية
+            let centeredValue = windowBuffer[i] - mean; 
+            sumSquares += Math.pow(centeredValue, 2);
         }
+        
         ssi = sumSquares;
         rms = Math.sqrt(sumSquares / WINDOW_SIZE);
     }
 
-    // تجهيز السطر (Row) لإضافته لملف الـ CSV
     const subjectId = document.getElementById('subjectId').value;
-    // الهيكل: Timestamp, Raw_EMG, Gesture_Class, Subject_ID, RMS, SSI
-    masterData.push(`${timestamp},${emgValue},${currentGestureClass},${subjectId},${rms.toFixed(2)},${ssi}`);
+    masterData.push(`${timestamp},${emgValue},${currentGestureClass},${subjectId},${rms.toFixed(2)},${ssi.toFixed(2)}`);
 }
 
 // ─── 7. بروتوكول التلقين (The Prompter Protocol) ──────────────────────────
