@@ -2,7 +2,7 @@
 
 
 [![Web Serial API](https://img.shields.io/badge/Web-Serial_API-green.svg)]()
-[![Target](https://img.shields.io/badge/Target-AI_Expo_Jordan_2026-gold.svg)]()
+
 
 أداة ويب مدمجة (Web-based Embedded Tool) احترافية لجمع وتسجيل بيانات الإشارات العضلية الكهربائية السطحية (sEMG) بدقة عالية. تم هندسة هذا النظام خصيصاً لبناء قاعدة بيانات (Dataset) نظيفة وموسومة تلقائياً، لتكون جاهزة لتدريب نماذج الذكاء الاصطناعي (وتحديداً 1D CNN) للتمييز بين حركات اليد الأساسية كخطوة أولى في تطوير الأطراف الصناعية الذكية.
 
